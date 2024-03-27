@@ -1,0 +1,88 @@
+<p>cars works!</p>
+
+<input type="text" [(ngModel)]="term" (keyup)="filterCars()">
+
+<select [(ngModel)]="pageNo" (change)="getPagedCars()">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+</select>
+
+<label for="">Column:</label>
+<select [(ngModel)]="column" >
+    <option value="color">color</option>
+    <option value="model">model</option>
+</select>
+<label for="">Order:</label>
+<select [(ngModel)]="order">
+    <option value="asc">ascending</option>
+    <option value="desc">decending</option>
+</select>
+<button (click)="getSortedCars()">sort</button>
+
+<hr>
+<hr>
+
+<label for="">Search:</label>
+<input type="text" [(ngModel)]="queries.filter" (keyup)="loadData()">
+
+<label for="">Page No:</label>
+<select [(ngModel)]="queries.pageNo" (change)="loadData()">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+</select>
+
+<label for="">Column:</label>
+<select [(ngModel)]="queries.sortBy" >
+    <option value="color">color</option>
+    <option value="model">model</option>
+</select>
+<label for="">Order:</label>
+<select [(ngModel)]="queries.order">
+    <option value="asc">ascending</option>
+    <option value="desc">decending</option>
+</select>
+<button (click)="loadData()">sort</button>
+
+
+
+
+
+<table class="table table-dark table-bordered">
+    <thead>
+        <tr>
+            <th>Vehicle</th>
+            <th>manufacrurer</th>
+            <th>model</th>
+            <th>color</th>
+            <th>type</th>
+            <th>fuel</th>
+            <th>image</th>
+            <th>id</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let car of cars">
+            <td>{{car.Vehicle}}</td>
+            <td>{{car.manufacrurer}}</td>
+            <td>{{car.model}}</td>
+            <td>{{car.color}}</td>
+            <td>{{car.type}}</td>
+            <td>{{car.fuel}}</td>
+            <td>
+                <!-- <img src="" alt="car image"> -->
+               <img src="{{car.image}}" width="100px" height="100px">
+            </td>
+            <td>{{car.id}}</td>
+            <td>
+                <button (click)="deleteCar(car.id)">delete</button>
+            </td>
+        </tr>
+
+    </tbody>
+</table> 
